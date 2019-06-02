@@ -1,0 +1,31 @@
+#include<iostream>
+#include<string.h>
+using namespace std;
+int main()
+{    int n,val,count;
+	string s,a,b;
+	
+	cin>>n>>s;
+   	if(n==1)
+	cout<<"0";
+	else
+	{  count=0;
+	  while(n>1)
+	  {	 n=n/2;
+	    val=0;
+	  	a=s.substr(0,n);
+	  	b=s.substr(n,n); 
+     	
+	    for(int i=0;i<n;i++)
+	    if(a[i]==b[i])
+	    val++;
+	  	
+	  	if(val==n)
+	    count++;
+	    
+		else
+		break;
+	  }
+	  cout<<count;
+    }
+}

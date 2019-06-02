@@ -1,0 +1,59 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+int main()
+{
+	int n,count1,count2,i;
+	char s[105],a[105],b[105];
+	cin>>n>>s;
+	if(n<=2)
+	cout<<"-1";
+	else
+	{    count1=0,count2=0;
+		for(i=n-1;i>=0;i--)
+		{   
+			if(s[i]=='0')
+			count1++;
+			else
+			count2++;
+		} 
+		if((count1==(n-1))||(count2==n))
+		cout<<"-1";
+		else
+		{
+			if(s[n-1]=='0')
+			{ strcpy(a,s);
+			  strcpy(b,s);
+			  i=n-1;
+			  do
+			  {
+			  	if(a[i]=='0')
+			  	a[i]='1';
+			  	else
+			  	a[i]='0';
+			  	i--;
+			  }while(a[i]!='1');
+			  a[i]='0';
+			b[n-1]='1';
+			cout<<a<<" "<<b;	
+			}
+			else
+			{strcpy(a,s);
+			  strcpy(b,s);
+			  i=n-1;
+			  do
+			  {
+			  	if(b[i]=='0')
+			  	b[i]='1';
+			  	else
+			  	b[i]='0';
+			  	i--;
+			  }while(b[i]!='0');
+			  b[i]='1';
+			a[n-1]='0';
+			cout<<a<<" "<<b;
+				
+			}
+		}
+	}
+}

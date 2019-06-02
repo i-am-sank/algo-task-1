@@ -1,0 +1,91 @@
+#include<iostream>
+#include<cstdio>
+using namespace std;
+void swap(int *a,int *b)
+{
+	int temp;
+	temp=*a;
+	*a=*b;
+	*b=temp;
+}
+int main()
+{ 
+   int a[6]={7,8,9,10,16,43};
+   int x,y,temp,i,ans[6]={0,0,0,0,0,0},b[8],c[8],pdt,j,k,n;
+   k=4,i=0;
+   printf("enter 4 queries\n");
+   while(k>0)
+   {
+   	 cout<<"enter indices: ";
+   	 scanf("%d %d",&x,&y);
+   	 c[i]=x,c[i+1]=y;
+   	 cout<<"enter product: ";
+   	 scanf("%d",&pdt);
+   	 for(j=0;j<6;j++)
+   	 if(pdt%a[j]==0)
+   	 {
+   	 	temp=pdt/a[j];
+   	 	for(n=0;n<6;n++)
+   	 	if(temp==a[n])
+   	 	{
+   	 		b[i]=a[j],b[i+1]=temp;
+   	 		break;
+		} 
+	 }
+   	k--;i+=2;
+	}  
+	for(i=0;i<8;i++)
+	{
+		for(j=0;j<8;j++)
+		if((c[i]==c[j])&&(i!=j))
+		{
+			if(b[i]!=b[j])
+			{
+				if(j%2==0)
+				{
+					swap(&b[j],&b[j+1]);
+					if(b[i]!=b[j])
+					{
+						if(i%2==0)
+						{
+							swap(&b[i],&b[i+1]);
+							if(b[i]!=b[j])
+							swap(&b[j],&b[j+1]);
+						}
+						else
+						{
+							swap(&b[i-1],&b[i]);
+							if(b[i]!=b[j])
+							swap(&b[j],&b[j+1]);
+						}
+					}
+				}
+				else
+				{
+				   swap(&b[j],&b[j-1]);
+					if(b[i]!=b[j])
+					{
+						if(i%2==0)
+						{
+							swap(&b[i],&b[i+1]);
+							if(b[i]!=b[j])
+							swap(&b[j],&b[j-1]);
+						}
+						else
+						{
+							swap(&b[i-1],&b[i]);
+							if(b[i]!=b[j])
+							swap(&b[j],&b[j-1]);
+						}
+					}	
+				}
+			}
+		}
+	}   
+	for(i=0;i<8;i++)
+	ans[c[i]]=b[i]; 
+	printf("correct order:") ; 
+	for(i=0;i<6;i++)
+    { printf("%d ",ans[i]);
+	fflush(stdout);}
+} 
